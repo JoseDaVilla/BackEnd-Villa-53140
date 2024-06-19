@@ -4,6 +4,7 @@ import github from "passport-github2";
 import { UsersManagerMongo as UsuariosManager } from "../dao/UserManagerDB.js";
 import { createCartService } from "../services/cartsService.js";
 import { generaHash, validatePassword } from "../utils.js";
+import { config } from "./config.js";
 
 const usuariosManager = new UsuariosManager();
 
@@ -12,9 +13,9 @@ export const initPassport = () => {
         "github",
         new github.Strategy(
             {
-                clientID: "Iv23liFjEWfEEEOY6BPa",
-                clientSecret: "72f78552b53ac6d37db065de70c1d15131913056",
-                callbackURL: "http://localhost:3000/api/sessions/callbackGithub",
+                clientID: config.clientID,
+                clientSecret: config.clientSecret,
+                callbackURL: config.callbackURL
             },
             async (ta, tr, profile, done) => {
                 try {
@@ -36,6 +37,7 @@ export const initPassport = () => {
                     }
                     return done(null, usuario);
                 } catch (error) {
+                    console.log("Error desde passport")
                     return done(error);
                 }
             }

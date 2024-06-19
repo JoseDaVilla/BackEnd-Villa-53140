@@ -13,21 +13,10 @@ export const getProductsService = async ({ limit = 10, page = 1, sort, query = {
         sort = sortOrder[sort] || null;
 
 
-        // if (typeof query === 'string') {
-        //     try {
-        //         query = JSON.parse(decodeURIComponent(query));
-        //     } catch (err) {
-        //         console.error('Error al analizar la query', err);
-        //         return res.status(400).json({ msg: 'Formato incorrecto de query' });
-        //     }
-        // }
-
-
         try {
             if (query)  
                 query = JSON.parse(decodeURIComponent(query));
         } catch (error) {
-            console.log("Unable to parse")
             query={}
         }
 

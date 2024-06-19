@@ -8,7 +8,7 @@ import { auth } from "../middleware/auth.js"
 
 const router = Router()
 
-router.get('/',auth, async (req, res) => {
+router.get('/', async (req, res) => {
 
     const { payload } = await getProductsService({})
     return res.render('inicio', { productos: payload })
