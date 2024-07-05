@@ -4,7 +4,10 @@ import github from "passport-github2";
 import { UsersManagerMongo as UsuariosManager } from "../dao/controllers/UserManagerDB.js";
 import { createCartService } from "../services/cartsServiceDB.js";
 import { generaHash, validatePassword } from "../utils.js";
+<<<<<<< HEAD
 import UserDTO from "../dao/DTOs/sessionsDTO.js";
+=======
+>>>>>>> c36ba2dff0a03159adf889f151fb220a6a55dc2e
 import { config } from "./config.js";
 
 const usuariosManager = new UsuariosManager();
@@ -16,7 +19,11 @@ export const initPassport = () => {
             {
                 clientID: config.clientID,
                 clientSecret: config.clientSecret,
+<<<<<<< HEAD
                 callbackURL: config.callbackURL,
+=======
+                callbackURL: config.callbackURL
+>>>>>>> c36ba2dff0a03159adf889f151fb220a6a55dc2e
             },
             async (ta, tr, profile, done) => {
                 try {
@@ -38,6 +45,7 @@ export const initPassport = () => {
                     }
                     return done(null, usuario);
                 } catch (error) {
+                    console.log("Error desde passport")
                     return done(error);
                 }
             }

@@ -15,9 +15,19 @@ import { auth } from "./middleware/auth.js";
 import { initPassport } from "./config/passport.config.js";
 import passport from "passport";
 import { config } from "./config/config.js";
+<<<<<<< HEAD
 
 const app = express();
 const PORT = config.PORT;
+=======
+import { CLIENT_RENEG_LIMIT } from "tls";
+
+
+
+const app = express();
+const PORT = config.PORT;
+const URL_MONGO_DB = config.MONGO_URL
+>>>>>>> c36ba2dff0a03159adf889f151fb220a6a55dc2e
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -46,7 +56,8 @@ app.use("/api/sessions", sessionsRouter);
 await dbConnection();
 
 const expressServer = app.listen(PORT, () => {
-    console.log(`Servidor activo en el puerto ${PORT}`);
+    console.log(`Servidor activo en el puerto ${config.PORT}`);
+    console.log(config.DB_NAME)
 });
 
 const socketServer = new Server(expressServer);
